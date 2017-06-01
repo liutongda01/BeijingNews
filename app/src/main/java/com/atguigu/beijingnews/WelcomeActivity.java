@@ -1,5 +1,6 @@
 package com.atguigu.beijingnews;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.animation.AlphaAnimation;
@@ -16,6 +17,11 @@ public class WelcomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         activity_main = (RelativeLayout)findViewById(R.id.activity_main);
+        setAnimation();
+
+    }
+
+    private void setAnimation() {
         //三个动画：旋转动画，渐变动画，缩放动画
         RotateAnimation ra = new RotateAnimation(0,360,RotateAnimation.RELATIVE_TO_SELF,0.5f,RotateAnimation.RELATIVE_TO_SELF,0.5f);
         //设置持续时间
@@ -41,11 +47,14 @@ public class WelcomeActivity extends AppCompatActivity {
         //监听动画播放完成
         set.setAnimationListener(new MyAnimationListener() );
     }
+
     class MyAnimationListener implements Animation.AnimationListener{
         //当动画开始的时候回调
         @Override
         public void onAnimationStart(Animation animation) {
-
+            Intent intent = new Intent(WelcomeActivity.this,GuideActivity.class);
+            startActivity(intent);
+            finish();
         }
         //当动画重复播放的时候回调
         @Override
